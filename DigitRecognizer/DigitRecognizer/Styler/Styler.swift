@@ -16,6 +16,7 @@ struct BlackLineStyler: Styler {
         let width: CGFloat
         let color: UIColor
         let opacity: Float
+        
         init() {
             let lineType = Constant.Line.self
             

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F3F135F257FCE8000AC2EED /* StyleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3F135E257FCE8000AC2EED /* StyleManager.m */; };
 		6F57F816257CED4700BC3F7C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F57F815257CED4700BC3F7C /* Extensions.swift */; };
 		6FAB7D7F257CEC3900889031 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7D7E257CEC3900889031 /* AppDelegate.swift */; };
 		6FAB7D83257CEC3900889031 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7D82257CEC3900889031 /* ViewController.swift */; };
@@ -32,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F3F135D257FCE8000AC2EED /* StyleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StyleManager.h; sourceTree = "<group>"; };
+		6F3F135E257FCE8000AC2EED /* StyleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StyleManager.m; sourceTree = "<group>"; };
+		6F3F1360257FD76500AC2EED /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
 		6F57F815257CED4700BC3F7C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6FAB7D7B257CEC3900889031 /* DigitRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FAB7D7E257CEC3900889031 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				6FAB7D89257CEC3A00889031 /* LaunchScreen.storyboard */,
 				6FAB7D8C257CEC3A00889031 /* Info.plist */,
 				6FE65E83257E44D10099CB37 /* DigitRecognizer-Bridging-Header.h */,
+				6F3F1360257FD76500AC2EED /* Defines.h */,
 			);
 			path = DigitRecognizer;
 			sourceTree = "<group>";
@@ -144,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				6FE65E8E257E4F7E0099CB37 /* Styler.swift */,
+				6F3F135D257FCE8000AC2EED /* StyleManager.h */,
+				6F3F135E257FCE8000AC2EED /* StyleManager.m */,
 			);
 			path = Styler;
 			sourceTree = "<group>";
@@ -250,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F3F135F257FCE8000AC2EED /* StyleManager.m in Sources */,
 				6FAB7DA7257CF3A400889031 /* DrawingLayer.swift in Sources */,
 				6FAB7DA5257CF2DC00889031 /* DrawingView.swift in Sources */,
 				6FE65E8F257E4F7E0099CB37 /* Styler.swift in Sources */,

@@ -29,3 +29,13 @@ extension Drawable where Self: DrawingView {
         return linePath
     }
 }
+
+extension StyleManager {
+    static func appearance<T: UIView>(aClass: T.Type) -> StyleManager {
+        return __shared(aClass)
+    }
+    
+    static func invoke<T: UIView>(for target: T) {
+        __invokeMethods(target)
+    }
+}
