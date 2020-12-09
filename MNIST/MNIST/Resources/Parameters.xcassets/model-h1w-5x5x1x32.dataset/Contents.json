@@ -1,0 +1,12 @@
+{
+  "data" : [
+    {
+      "filename" : "model-h1w-5x5x1x32",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

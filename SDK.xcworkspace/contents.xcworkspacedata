@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:FutureKit/FutureKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Canvas/Canvas.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:MNIST/MNIST.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:DigitRecognizer/DigitRecognizer.xcodeproj">
    </FileRef>
 </Workspace>

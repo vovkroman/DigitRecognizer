@@ -7,19 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F3F135F257FCE8000AC2EED /* StyleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3F135E257FCE8000AC2EED /* StyleManager.m */; };
-		6F57F816257CED4700BC3F7C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F57F815257CED4700BC3F7C /* Extensions.swift */; };
 		6FAB7D7F257CEC3900889031 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7D7E257CEC3900889031 /* AppDelegate.swift */; };
 		6FAB7D83257CEC3900889031 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7D82257CEC3900889031 /* ViewController.swift */; };
 		6FAB7D86257CEC3900889031 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB7D84257CEC3900889031 /* Main.storyboard */; };
 		6FAB7D88257CEC3A00889031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB7D87257CEC3A00889031 /* Assets.xcassets */; };
 		6FAB7D8B257CEC3A00889031 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB7D89257CEC3A00889031 /* LaunchScreen.storyboard */; };
 		6FAB7D96257CEC3A00889031 /* DigitRecognizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7D95257CEC3A00889031 /* DigitRecognizerTests.swift */; };
-		6FAB7DA1257CEE8800889031 /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7DA0257CEE8800889031 /* Points.swift */; };
-		6FAB7DA5257CF2DC00889031 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7DA4257CF2DC00889031 /* DrawingView.swift */; };
-		6FAB7DA7257CF3A400889031 /* DrawingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7DA6257CF3A400889031 /* DrawingLayer.swift */; };
-		6FAB7DA9257CF48D00889031 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7DA8257CF48D00889031 /* Constants.swift */; };
-		6FE65E8F257E4F7E0099CB37 /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE65E8E257E4F7E0099CB37 /* Styler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,10 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6F3F135D257FCE8000AC2EED /* StyleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StyleManager.h; sourceTree = "<group>"; };
-		6F3F135E257FCE8000AC2EED /* StyleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StyleManager.m; sourceTree = "<group>"; };
 		6F3F1360257FD76500AC2EED /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
-		6F57F815257CED4700BC3F7C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6FAB7D7B257CEC3900889031 /* DigitRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FAB7D7E257CEC3900889031 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FAB7D82257CEC3900889031 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,12 +37,7 @@
 		6FAB7D91257CEC3A00889031 /* DigitRecognizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigitRecognizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FAB7D95257CEC3A00889031 /* DigitRecognizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitRecognizerTests.swift; sourceTree = "<group>"; };
 		6FAB7D97257CEC3A00889031 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6FAB7DA0257CEE8800889031 /* Points.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
-		6FAB7DA4257CF2DC00889031 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
-		6FAB7DA6257CF3A400889031 /* DrawingLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingLayer.swift; sourceTree = "<group>"; };
-		6FAB7DA8257CF48D00889031 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6FE65E83257E44D10099CB37 /* DigitRecognizer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DigitRecognizer-Bridging-Header.h"; sourceTree = "<group>"; };
-		6FE65E8E257E4F7E0099CB37 /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,15 +58,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6F57F814257CED1700BC3F7C /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				6F57F815257CED4700BC3F7C /* Extensions.swift */,
-				6FAB7DA8257CF48D00889031 /* Constants.swift */,
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
 		6FAB7D72257CEC3900889031 = {
 			isa = PBXGroup;
 			children = (
@@ -103,10 +79,6 @@
 		6FAB7D7D257CEC3900889031 /* DigitRecognizer */ = {
 			isa = PBXGroup;
 			children = (
-				6FE65E90257E54F80099CB37 /* Styler */,
-				6FAB7DA3257CF2B100889031 /* DrawableUI */,
-				6FAB7DA2257CEE8F00889031 /* Points */,
-				6F57F814257CED1700BC3F7C /* Helper */,
 				6FAB7D7E257CEC3900889031 /* AppDelegate.swift */,
 				6FAB7D82257CEC3900889031 /* ViewController.swift */,
 				6FAB7D84257CEC3900889031 /* Main.storyboard */,
@@ -126,33 +98,6 @@
 				6FAB7D97257CEC3A00889031 /* Info.plist */,
 			);
 			path = DigitRecognizerTests;
-			sourceTree = "<group>";
-		};
-		6FAB7DA2257CEE8F00889031 /* Points */ = {
-			isa = PBXGroup;
-			children = (
-				6FAB7DA0257CEE8800889031 /* Points.swift */,
-			);
-			path = Points;
-			sourceTree = "<group>";
-		};
-		6FAB7DA3257CF2B100889031 /* DrawableUI */ = {
-			isa = PBXGroup;
-			children = (
-				6FAB7DA4257CF2DC00889031 /* DrawingView.swift */,
-				6FAB7DA6257CF3A400889031 /* DrawingLayer.swift */,
-			);
-			path = DrawableUI;
-			sourceTree = "<group>";
-		};
-		6FE65E90257E54F80099CB37 /* Styler */ = {
-			isa = PBXGroup;
-			children = (
-				6FE65E8E257E4F7E0099CB37 /* Styler.swift */,
-				6F3F135D257FCE8000AC2EED /* StyleManager.h */,
-				6F3F135E257FCE8000AC2EED /* StyleManager.m */,
-			);
-			path = Styler;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,15 +202,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F3F135F257FCE8000AC2EED /* StyleManager.m in Sources */,
-				6FAB7DA7257CF3A400889031 /* DrawingLayer.swift in Sources */,
-				6FAB7DA5257CF2DC00889031 /* DrawingView.swift in Sources */,
-				6FE65E8F257E4F7E0099CB37 /* Styler.swift in Sources */,
 				6FAB7D83257CEC3900889031 /* ViewController.swift in Sources */,
-				6F57F816257CED4700BC3F7C /* Extensions.swift in Sources */,
 				6FAB7D7F257CEC3900889031 /* AppDelegate.swift in Sources */,
-				6FAB7DA1257CEE8800889031 /* Points.swift in Sources */,
-				6FAB7DA9257CF48D00889031 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
