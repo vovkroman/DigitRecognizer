@@ -1,6 +1,6 @@
 import Accelerate
 
-struct NNShape {
+struct Shape {
     let width: Int
     let height: Int
     let channels: Int
@@ -13,11 +13,11 @@ struct NNShape {
 }
 
 
-class NNFilter {
+class Filter {
     let filter: BNNSFilter
-    let shape: NNShape
+    let shape: Shape
     
-    init(filter: BNNSFilter, shape: NNShape) {
+    init(filter: BNNSFilter, shape: Shape) {
         self.filter = filter
         self.shape = shape
     }
@@ -27,7 +27,7 @@ class NNFilter {
 
 
 struct NeuralNetwork {
-    let network: [NNFilter]
+    let network: [Filter]
     
     func apply(input: [Float32]) -> [Float32] {
         var outputs = input
@@ -44,7 +44,7 @@ struct NeuralNetwork {
     }
 }
 
-class NNBuilder {
+class Builder {
     
     var dataType: BNNSDataType {
         get {
@@ -54,13 +54,13 @@ class NNBuilder {
     
     private var descriptors: [LayerDescriptor] = []
     
-    private var inputShape: NNShape!
+    private var inputShape: Shape!
     private var kernel: (width: Int, height: Int)!
     private var stride = (x: 1, y: 1)
     private var activation = BNNSActivationFunction.rectifiedLinear
     
     func shape(width: Int, height: Int, channels: Int) -> Self {
-        let shape = NNShape(width: width, height: height, channels: channels)
+        let shape = Shape(width: width, height: height, channels: channels)
         inputShape = shape
         
         if let lastFilter = descriptors.last {
@@ -139,10 +139,10 @@ class NNBuilder {
     
     private class LayerDescriptor {
         var dataType: BNNSDataType!
-        var input: NNShape!
-        var output: NNShape!
+        var input: Shape!
+        var output: Shape!
         
-        func build() -> NNFilter? {
+        func build() -> Filter? {
             return nil
         }
     }
@@ -154,7 +154,7 @@ class NNBuilder {
         var bias: [Float32]!
         var activation: BNNSActivationFunction!
         
-        override func build() -> NNFilter? {
+        override func build() -> Filter? {
             
             let x_padding: Int = (stride.x * (output.width - 1) + kernel.width - input.width) / 2
             let y_padding: Int = (stride.y * (output.height - 1) + kernel.height - input.height) / 2
@@ -173,14 +173,14 @@ class NNBuilder {
             guard let convolve = BNNSFilterCreateConvolutionLayer(&imageStackIn, &imageStackOut, &layerParams, nil)
                 else { return nil }
             
-            return NNFilter(filter: convolve, shape: output)
+            return Filter(filter: convolve, shape: output)
         }
     }
     
     private class MaxPoolingLayerDescriptor : LayerDescriptor {
         var kernel: (width: Int, height: Int)!
         
-        override func build() -> NNFilter? {
+        override func build() -> Filter? {
             
             let stride = (x: kernel.width, y: kernel.height)
             
@@ -200,7 +200,7 @@ class NNBuilder {
             guard let pool = BNNSFilterCreatePoolingLayer(&imageStackIn, &imageStackOut, &layerParams, nil)
                 else { return nil }
             
-            return NNFilter(filter: pool, shape: output)
+            return Filter(filter: pool, shape: output)
         }
     }
     
@@ -209,7 +209,7 @@ class NNBuilder {
         var bias: [Float32]!
         var activation: BNNSActivationFunction!
         
-        override func build() -> NNFilter? {
+        override func build() -> Filter? {
             
             var hiddenIn = BNNSVectorDescriptor(size: input.size, data_type: dataType, data_scale: 0, data_bias: 0)
             var hiddenOut = BNNSVectorDescriptor(size: output.size, data_type: dataType, data_scale: 0, data_bias: 0)
@@ -223,7 +223,7 @@ class NNBuilder {
             guard let layer = BNNSFilterCreateFullyConnectedLayer(&hiddenIn, &hiddenOut, &layerParams, nil)
                 else { return nil }
             
-            return NNFilter(filter: layer, shape: output)
+            return Filter(filter: layer, shape: output)
         }
     }
 }

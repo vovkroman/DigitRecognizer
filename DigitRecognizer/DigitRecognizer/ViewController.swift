@@ -17,7 +17,7 @@ class Canvas: DrawingView {
 }
 
 class ViewController: UIViewController {
-    let ai = MNISTNet()
+    let ai = MNIST()
     
     @IBOutlet weak var canvas: Canvas!
     
