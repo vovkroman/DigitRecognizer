@@ -1,31 +1,5 @@
 import Accelerate
 
-struct Shape {
-    let width: Int
-    let height: Int
-    let channels: Int
-    
-    var size: Int {
-        get {
-            return width * height * channels
-        }
-    }
-}
-
-
-class Filter {
-    let filter: BNNSFilter
-    let shape: Shape
-    
-    init(filter: BNNSFilter, shape: Shape) {
-        self.filter = filter
-        self.shape = shape
-    }
-    
-    deinit { BNNSFilterDestroy(filter) }
-}
-
-
 struct NeuralNetwork {
     let network: [Filter]
     
@@ -52,10 +26,10 @@ class Builder {
         }
     }
     
-    private var descriptors: [LayerDescriptor] = []
+    private var descriptors: ContiguousArray<Descriptor.Layer> = []
     
     private var inputShape: Shape!
-    private var kernel: (width: Int, height: Int)!
+    private var kernel: Kernel!
     private var stride = (x: 1, y: 1)
     private var activation = BNNSActivationFunction.rectifiedLinear
     
@@ -90,7 +64,7 @@ class Builder {
     }
     
     func convolve(weights: [Float32], bias: [Float32]) -> Self {
-        let desc = ConvolutionLayerDescriptor()
+        let desc = Descriptor.ConvolutionLayer()
         desc.dataType = dataType
         desc.input = inputShape
         desc.kernel = kernel
@@ -104,7 +78,7 @@ class Builder {
     }
     
     func maxpool(width: Int, height: Int) -> Self {
-        let desc = MaxPoolingLayerDescriptor()
+        let desc = Descriptor.MaxPoolingLayer()
         desc.dataType = dataType
         desc.input = inputShape
         desc.kernel = (width: width, height: height)
@@ -114,7 +88,7 @@ class Builder {
     }
     
     func connect(weights: [Float32], bias: [Float32]) -> Self {
-        let desc = FullyConnectedLayerDescriptor()
+        let desc = Descriptor.FullyConnectedLayer()
         desc.dataType = dataType
         desc.input = inputShape
         desc.weights = weights
@@ -126,105 +100,14 @@ class Builder {
     }
     
     func build() throws -> NeuralNetwork {
-        let building = descriptors.map { $0.build() }
+        let building = descriptors.compactMap { $0.build() }
         let network = building.compactMap{$0}
         
         guard network.count == building.count else {
-            throw NNError.error(description: "Neurl netwotk can't be build!")
+            throw NNError.error(description: "Neurl netwotk can't be build! Since one of layer is nil")
         }
         
         return NeuralNetwork(network: network)
-    }
-    
-    
-    private class LayerDescriptor {
-        var dataType: BNNSDataType!
-        var input: Shape!
-        var output: Shape!
-        
-        func build() -> Filter? {
-            return nil
-        }
-    }
-    
-    private class ConvolutionLayerDescriptor : LayerDescriptor {
-        var kernel: (width: Int, height: Int)!
-        var stride: (x: Int, y: Int)!
-        var weights: [Float32]!
-        var bias: [Float32]!
-        var activation: BNNSActivationFunction!
-        
-        override func build() -> Filter? {
-            
-            let x_padding: Int = (stride.x * (output.width - 1) + kernel.width - input.width) / 2
-            let y_padding: Int = (stride.y * (output.height - 1) + kernel.height - input.height) / 2
-            let pad = (x: x_padding, y: y_padding)
-            
-            var imageStackIn = BNNSImageStackDescriptor(width: input.width, height: input.height, channels: input.channels, row_stride: input.width, image_stride: input.width * input.height, data_type: dataType, data_scale: 0, data_bias: 0)
-            
-            var imageStackOut = BNNSImageStackDescriptor(width: output.width, height: output.height, channels: output.channels, row_stride: output.width, image_stride: output.width * output.height, data_type: dataType, data_scale: 0, data_bias: 0)
-            
-            let weights_data = BNNSLayerData(data: weights, data_type: dataType, data_scale: 0, data_bias: 0, data_table: nil)
-            let bias_data = BNNSLayerData(data: bias, data_type: dataType, data_scale: 0, data_bias: 0, data_table: nil)
-            let activ = BNNSActivation(function: activation, alpha: 0, beta: 0)
-            
-            var layerParams = BNNSConvolutionLayerParameters(x_stride: stride.x, y_stride: stride.y, x_padding: pad.x, y_padding: pad.y, k_width: kernel.width, k_height: kernel.height, in_channels: input.channels, out_channels: output.channels, weights: weights_data, bias: bias_data, activation: activ)
-            
-            guard let convolve = BNNSFilterCreateConvolutionLayer(&imageStackIn, &imageStackOut, &layerParams, nil)
-                else { return nil }
-            
-            return Filter(filter: convolve, shape: output)
-        }
-    }
-    
-    private class MaxPoolingLayerDescriptor : LayerDescriptor {
-        var kernel: (width: Int, height: Int)!
-        
-        override func build() -> Filter? {
-            
-            let stride = (x: kernel.width, y: kernel.height)
-            
-            let x_padding: Int = (stride.x * (output.width - 1) + kernel.width - input.width) / 2
-            let y_padding: Int = (stride.y * (output.height - 1) + kernel.height - input.height) / 2
-            let pad = (x: x_padding, y: y_padding)
-            
-            var imageStackIn = BNNSImageStackDescriptor(width: input.width, height: input.height, channels: input.channels, row_stride: input.width, image_stride: input.width * input.height, data_type: dataType, data_scale: 0, data_bias: 0)
-            
-            var imageStackOut = BNNSImageStackDescriptor(width: output.width, height: output.height, channels: output.channels, row_stride: output.width, image_stride: output.width * output.height, data_type: dataType, data_scale: 0, data_bias: 0)
-            
-            let bias_data = BNNSLayerData()
-            let activ = BNNSActivation(function: BNNSActivationFunction.identity, alpha: 0, beta: 0)
-            
-            var layerParams = BNNSPoolingLayerParameters(x_stride: stride.x, y_stride: stride.y, x_padding: pad.x, y_padding: pad.y, k_width: kernel.width, k_height: kernel.height, in_channels: input.channels, out_channels: output.channels, pooling_function: BNNSPoolingFunction.max, bias: bias_data, activation: activ)
-            
-            guard let pool = BNNSFilterCreatePoolingLayer(&imageStackIn, &imageStackOut, &layerParams, nil)
-                else { return nil }
-            
-            return Filter(filter: pool, shape: output)
-        }
-    }
-    
-    private class FullyConnectedLayerDescriptor : LayerDescriptor {
-        var weights: [Float32]!
-        var bias: [Float32]!
-        var activation: BNNSActivationFunction!
-        
-        override func build() -> Filter? {
-            
-            var hiddenIn = BNNSVectorDescriptor(size: input.size, data_type: dataType, data_scale: 0, data_bias: 0)
-            var hiddenOut = BNNSVectorDescriptor(size: output.size, data_type: dataType, data_scale: 0, data_bias: 0)
-            
-            let weights_data = BNNSLayerData(data: weights, data_type: dataType, data_scale: 0, data_bias: 0, data_table: nil)
-            let bias_data = BNNSLayerData(data: bias, data_type: dataType, data_scale: 0, data_bias: 0, data_table: nil)
-            let activ = BNNSActivation(function: activation, alpha: 0, beta: 0)
-            
-            var layerParams = BNNSFullyConnectedLayerParameters(in_size: input.size, out_size: output.size, weights: weights_data, bias: bias_data, activation: activ)
-            
-            guard let layer = BNNSFilterCreateFullyConnectedLayer(&hiddenIn, &hiddenOut, &layerParams, nil)
-                else { return nil }
-            
-            return Filter(filter: layer, shape: output)
-        }
     }
 }
 

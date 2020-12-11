@@ -11,11 +11,14 @@
 		6F19D4432580033600E8EFC0 /* MNISTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19D4422580033600E8EFC0 /* MNISTTests.swift */; };
 		6F19D4452580033600E8EFC0 /* MNIST.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F19D4372580033600E8EFC0 /* MNIST.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F9D38212580E53E00EFD055 /* Parameters.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9D38202580E53E00EFD055 /* Parameters.xcassets */; };
-		6F9D382B2580F78D00EFD055 /* MNISTNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D382A2580F78D00EFD055 /* MNISTNet.swift */; };
-		6F9D382F2580F7C900EFD055 /* NNBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D382E2580F7C900EFD055 /* NNBuilder.swift */; };
+		6F9D382B2580F78D00EFD055 /* MNIST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D382A2580F78D00EFD055 /* MNIST.swift */; };
+		6F9D382F2580F7C900EFD055 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D382E2580F7C900EFD055 /* Builder.swift */; };
 		6F9D384B25811C2200EFD055 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D384A25811C2200EFD055 /* Constants.swift */; };
 		6F9D384F25811CED00EFD055 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D384E25811CED00EFD055 /* Extensions.swift */; };
 		6F9D3853258128CA00EFD055 /* MNISTImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D3852258128CA00EFD055 /* MNISTImage.swift */; };
+		6FC1AFED2583A29C00E892D7 /* Bricks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC1AFEC2583A29C00E892D7 /* Bricks.swift */; };
+		6FC1AFF22583A30E00E892D7 /* Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC1AFF12583A30E00E892D7 /* Layers.swift */; };
+		6FC1AFFA2583AC2D00E892D7 /* Loaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC1AFF92583AC2D00E892D7 /* Loaders.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +39,14 @@
 		6F19D4422580033600E8EFC0 /* MNISTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNISTTests.swift; sourceTree = "<group>"; };
 		6F19D4442580033600E8EFC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F9D38202580E53E00EFD055 /* Parameters.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Parameters.xcassets; sourceTree = "<group>"; };
-		6F9D382A2580F78D00EFD055 /* MNISTNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNISTNet.swift; sourceTree = "<group>"; };
-		6F9D382E2580F7C900EFD055 /* NNBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NNBuilder.swift; sourceTree = "<group>"; };
+		6F9D382A2580F78D00EFD055 /* MNIST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNIST.swift; sourceTree = "<group>"; };
+		6F9D382E2580F7C900EFD055 /* Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		6F9D384A25811C2200EFD055 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6F9D384E25811CED00EFD055 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6F9D3852258128CA00EFD055 /* MNISTImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNISTImage.swift; sourceTree = "<group>"; };
+		6FC1AFEC2583A29C00E892D7 /* Bricks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bricks.swift; sourceTree = "<group>"; };
+		6FC1AFF12583A30E00E892D7 /* Layers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layers.swift; sourceTree = "<group>"; };
+		6FC1AFF92583AC2D00E892D7 /* Loaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loaders.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +89,10 @@
 		6F19D4362580033600E8EFC0 /* MNIST */ = {
 			isa = PBXGroup;
 			children = (
+				6FC1AFF02583A2F900E892D7 /* BuildingBlocks */,
 				6F9D38392580FDA100EFD055 /* Resources */,
-				6F9D382E2580F7C900EFD055 /* NNBuilder.swift */,
-				6F9D382A2580F78D00EFD055 /* MNISTNet.swift */,
+				6F9D382E2580F7C900EFD055 /* Builder.swift */,
+				6F9D382A2580F78D00EFD055 /* MNIST.swift */,
 				6F9D384A25811C2200EFD055 /* Constants.swift */,
 				6F9D384E25811CED00EFD055 /* Extensions.swift */,
 				6F9D3852258128CA00EFD055 /* MNISTImage.swift */,
@@ -110,6 +117,16 @@
 				6F9D38202580E53E00EFD055 /* Parameters.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		6FC1AFF02583A2F900E892D7 /* BuildingBlocks */ = {
+			isa = PBXGroup;
+			children = (
+				6FC1AFEC2583A29C00E892D7 /* Bricks.swift */,
+				6FC1AFF12583A30E00E892D7 /* Layers.swift */,
+				6FC1AFF92583AC2D00E892D7 /* Loaders.swift */,
+			);
+			path = BuildingBlocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,7 +186,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Roman Vovk";
 				TargetAttributes = {
 					6F19D4332580033600E8EFC0 = {
@@ -224,10 +241,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F9D3853258128CA00EFD055 /* MNISTImage.swift in Sources */,
-				6F9D382F2580F7C900EFD055 /* NNBuilder.swift in Sources */,
-				6F9D382B2580F78D00EFD055 /* MNISTNet.swift in Sources */,
+				6F9D382F2580F7C900EFD055 /* Builder.swift in Sources */,
+				6FC1AFFA2583AC2D00E892D7 /* Loaders.swift in Sources */,
+				6F9D382B2580F78D00EFD055 /* MNIST.swift in Sources */,
 				6F9D384B25811C2200EFD055 /* Constants.swift in Sources */,
 				6F9D384F25811CED00EFD055 /* Extensions.swift in Sources */,
+				6FC1AFED2583A29C00E892D7 /* Bricks.swift in Sources */,
+				6FC1AFF22583A30E00E892D7 /* Layers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +296,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -339,6 +360,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
