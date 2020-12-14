@@ -10,6 +10,24 @@ extension Bundle {
     }
 }
 
+extension Stride {
+    static var `default`: Stride {
+        return .init(x: 1, y: 1)
+    }
+}
+
+extension Kernel {
+    static var `default`: Kernel {
+        return .init(width: 1, height: 1)
+    }
+}
+
+extension Shape {
+    static var `default`: Shape {
+        return .init(width: 1, height: 1, channels: 1)
+    }
+}
+
 extension Data {
     
     func toFloat32() throws -> [Float32] {
@@ -28,16 +46,16 @@ extension UIImage {
         let colorSpace = CGColorSpaceCreateDeviceGray()
         let bitmapInfo = CGBitmapInfo()
 
-        guard let context = CGContext(data: nil, width: Int(size.width),
+        guard let cgImage = cgImage,
+            let context = CGContext(data: nil, width: Int(size.width),
                                       height: Int(size.height),
                                       bitsPerComponent: 8,
                                       bytesPerRow: Int(size.width),
-                                      space: colorSpace, bitmapInfo: bitmapInfo.rawValue) else { return nil }
+                                      space: colorSpace, bitmapInfo: bitmapInfo.rawValue),
+            let contextData = context.data else { return nil }
         
-        context.draw(cgImage!, in: CGRect(origin: .zero, size: size))
-        
-        let data = Data(bytes: context.data!, count: Int(size.width * size.height))
-        
+        context.draw(cgImage, in: CGRect(origin: .zero, size: size))
+        let data = Data(bytes: contextData, count: Int(size.width * size.height))
         return data
     }
     
@@ -91,10 +109,20 @@ extension UIImage {
         
         return CGRect(origin: center, size: CGSize.zero).insetBy(dx: -hh, dy: -hh)
     }
-}
-
-extension ContiguousArray where Element == DataLoader {
-    subscript(by index: Int) -> [Float32] {
-        return self[index].floats
+    
+    var MNIST: UIImage? {
+        let mass = centerOfMass
+        let target = CGSize(width: 28, height: 28)
+        let scale = max(target.width / mass.width, target.height / mass.height)
+        let scaledSize = CGSize(width: size.width * scale, height: size.height * scale)
+        
+        let rect = CGRect(origin: CGPoint(x: -mass.minX * scale, y: -mass.minY * scale), size: scaledSize)
+        
+        UIGraphicsBeginImageContextWithOptions(target, false, 1)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        draw(in: rect)
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }

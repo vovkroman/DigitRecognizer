@@ -16,22 +16,24 @@ public class MNIST {
         _network = nn
     }
     
-    public func predict(image: Data) -> Int {
-        return predict(input: read(image: image))
+    public func predict(data: Data) -> [Float] {
+        return predict(input: read(data: data))
     }
     
-    public func predict(input: [Float32]) -> Int {
-        
-        let outputs = _network.apply(input: input)
-        
-        return outputs.firstIndex(of: outputs.max()!)!
+    public func predict(image: UIImage) -> [Float] {
+        guard let mnistImage = try? MNISTImage(image) else { return [] }
+        return predict(input: mnistImage.mnistData)
     }
     
-    private func read(image: Data) -> [Float32] {
-        return image.map { Float32($0) / 255.0 }
+    public func predict(input: [Float32]) -> [Float] {
+        let outputs = _network.inference(input: input)
+        return outputs.softmax()
+    }
+    
+    private func read(data: Data) -> [Float32] {
+        return data.map { Float32($0) / 255.0 }
     }
 }
-
 
 extension MNIST: Networkable {
     static func build(with weights: [Weights]) throws -> NeuralNetwork {

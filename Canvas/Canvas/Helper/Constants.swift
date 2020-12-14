@@ -1,6 +1,9 @@
 import UIKit.UIColor
 
 enum Constant {
+    enum Functional {
+        static let delay: TimeInterval = 2.0
+    }
     enum Display {
         static var scale: CGFloat = UIScreen.main.scale
     }
@@ -9,7 +12,7 @@ enum Constant {
     }
     enum Line {
         static let color: UIColor = .black
-        static let width: CGFloat = 5
+        static let width: CGFloat = 30
         static let opacity: Float = 1
     }
 }

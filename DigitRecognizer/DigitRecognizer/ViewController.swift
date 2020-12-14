@@ -2,33 +2,27 @@ import UIKit
 import Canvas
 import MNIST
 
-class Canvas: DrawingView {
-    func getImage() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 1)
-        defer {
-            UIGraphicsEndImageContext()
-        }
-        
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        
-        layer.render(in: context)
-        return UIGraphicsGetImageFromCurrentImageContext()
-    }
-}
-
 class ViewController: UIViewController {
     let ai = MNIST()
     
     @IBOutlet weak var canvas: Canvas!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        canvas.delegate = self
     }
     
-    @IBAction func recognize(_ sender: Any) {
-        guard let image = canvas.getImage(), let data = MNISTImage(image).data else { return }
-        print(image)
-        print(ai?.predict(input: data))
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+}
+
+extension ViewController: DrawingDelegate {
+    func drawingDidStart(on view: DrawingView) {}
+    func drawingDidFinish(on view: DrawingView) {
+        guard let image = canvas.getImageRepresentation() else { return }
+        let imageView = UIImageView(frame: image.)
     }
 }
 

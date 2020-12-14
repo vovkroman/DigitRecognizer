@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F06BE782583BB0E0047EC9A /* softmax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F06BE772583BB0E0047EC9A /* softmax.swift */; };
 		6F19D43E2580033600E8EFC0 /* MNIST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F19D4342580033600E8EFC0 /* MNIST.framework */; };
 		6F19D4432580033600E8EFC0 /* MNISTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19D4422580033600E8EFC0 /* MNISTTests.swift */; };
 		6F19D4452580033600E8EFC0 /* MNIST.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F19D4372580033600E8EFC0 /* MNIST.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F06BE772583BB0E0047EC9A /* softmax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = softmax.swift; sourceTree = "<group>"; };
 		6F19D4342580033600E8EFC0 /* MNIST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MNIST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F19D4372580033600E8EFC0 /* MNIST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNIST.h; sourceTree = "<group>"; };
 		6F19D4382580033600E8EFC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		6F19D4362580033600E8EFC0 /* MNIST */ = {
 			isa = PBXGroup;
 			children = (
+				6FC1B0022583B51800E892D7 /* Softmax */,
 				6FC1AFF02583A2F900E892D7 /* BuildingBlocks */,
 				6F9D38392580FDA100EFD055 /* Resources */,
 				6F9D382E2580F7C900EFD055 /* Builder.swift */,
@@ -127,6 +130,14 @@
 				6FC1AFF92583AC2D00E892D7 /* Loaders.swift */,
 			);
 			path = BuildingBlocks;
+			sourceTree = "<group>";
+		};
+		6FC1B0022583B51800E892D7 /* Softmax */ = {
+			isa = PBXGroup;
+			children = (
+				6F06BE772583BB0E0047EC9A /* softmax.swift */,
+			);
+			path = Softmax;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,7 +202,7 @@
 				TargetAttributes = {
 					6F19D4332580033600E8EFC0 = {
 						CreatedOnToolsVersion = 11.7;
-						LastSwiftMigration = 1200;
+						LastSwiftMigration = 1120;
 					};
 					6F19D43C2580033600E8EFC0 = {
 						CreatedOnToolsVersion = 11.7;
@@ -240,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F06BE782583BB0E0047EC9A /* softmax.swift in Sources */,
 				6F9D3853258128CA00EFD055 /* MNISTImage.swift in Sources */,
 				6F9D382F2580F7C900EFD055 /* Builder.swift in Sources */,
 				6FC1AFFA2583AC2D00E892D7 /* Loaders.swift in Sources */,
@@ -412,6 +424,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.MNIST;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -438,6 +451,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.MNIST;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

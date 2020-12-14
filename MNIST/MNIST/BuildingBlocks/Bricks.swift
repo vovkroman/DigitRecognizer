@@ -12,8 +12,15 @@ struct Shape {
     }
 }
 
-typealias Kernel = (width: Int, height: Int)
-typealias Stride = (x: Int, y: Int)
+struct Kernel {
+    let width: Int
+    let height: Int
+}
+
+struct Stride {
+    let x: Int
+    let y: Int
+}
 
 class Filter {
     let filter: BNNSFilter

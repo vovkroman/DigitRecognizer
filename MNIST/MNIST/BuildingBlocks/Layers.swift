@@ -1,18 +1,18 @@
 import Accelerate
 
 protocol Buildable {
-    func build() -> Filter
+    func build() throws -> Filter
 }
 
 enum Descriptor {}
 
 extension Descriptor {
     class Layer {
-        var dataType: BNNSDataType!
-        var input: Shape!
-        var output: Shape!
+        var dataType: BNNSDataType = .float
+        var input: Shape = .default
+        var output: Shape = .default
         
-        func build() -> Filter {
+        func build() throws -> Filter {
             fatalError("Abstarct layer can't be built")
         }
     }
@@ -20,13 +20,13 @@ extension Descriptor {
 
 extension Descriptor {
     final class ConvolutionLayer: Layer {
-        var kernel: Kernel!
-        var stride: (x: Int, y: Int)!
-        var weights: [Float32]!
-        var bias: [Float32]!
-        var activation: BNNSActivationFunction!
+        var kernel: Kernel = .default
+        var stride: Stride = .default
+        var weights: [Float32] = []
+        var bias: [Float32] = []
+        var activation: BNNSActivationFunction = .identity
         
-        override func build() -> Filter {
+        override func build() throws -> Filter {
             
             let x_padding: Int = (stride.x * (output.width - 1) + kernel.width - input.width) / 2
             let y_padding: Int = (stride.y * (output.height - 1) + kernel.height - input.height) / 2
@@ -53,9 +53,9 @@ extension Descriptor {
 
 extension Descriptor {
     final class MaxPoolingLayer: Layer {
-        var kernel: Kernel!
+        var kernel: Kernel = .default
         
-        override func build() -> Filter {
+        override func build() throws -> Filter {
             
             let stride = (x: kernel.width, y: kernel.height)
             
@@ -83,11 +83,11 @@ extension Descriptor {
 
 extension Descriptor {
     final class FullyConnectedLayer: Layer {
-        var weights: [Float32]!
-        var bias: [Float32]!
-        var activation: BNNSActivationFunction!
+        var weights: [Float32] = []
+        var bias: [Float32] = []
+        var activation: BNNSActivationFunction = .identity
         
-        override func build() -> Filter {
+        override func build() throws -> Filter {
             var hiddenIn = BNNSVectorDescriptor(size: input.size, data_type: dataType, data_scale: 0, data_bias: 0)
             var hiddenOut = BNNSVectorDescriptor(size: output.size, data_type: dataType, data_scale: 0, data_bias: 0)
             

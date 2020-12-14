@@ -1,13 +1,23 @@
 import UIKit
 
+public protocol DrawingDelegate: class {
+    func drawingDidStart(on view: DrawingView)
+    func drawingDidFinish(on view: DrawingView)
+}
+
 open class DrawingView: UIView, Drawable {
     
     var styler: Styler = BlackLineStyler()
     
     private var _drawingLayer: DrawingLayer?
+    private var _sublayers: [CALayer] {
+        return layer.sublayers ?? []
+    }
+    
+    public weak var delegate: DrawingDelegate?
     
     let points: Points = Points(Constant.Points.maxCount)
-    
+
     // MARK: - Initializations
     
     public required init?(coder: NSCoder) {
@@ -37,7 +47,22 @@ open class DrawingView: UIView, Drawable {
         points.removeAll()
     }
     
+    private func tryToFinishDrawing() {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(finishedDrawing), object: nil)
+        perform(#selector(finishedDrawing), with: nil, afterDelay: 2.0)
+    }
+    
+    @objc private func finishedDrawing() {
+        delegate?.drawingDidFinish(on: self)
+    }
+    
     // MARK: - Methods which do custom touch handling
+    
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(finishedDrawing), object: nil)
+        delegate?.drawingDidStart(on: self)
+    }
     
     public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let new = touches.first?.location(in: self) else { return }
@@ -51,6 +76,7 @@ open class DrawingView: UIView, Drawable {
     
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         flattenImage()
+        tryToFinishDrawing()
     }
     
     // MARK: - Methods which responsible for custom drawing
@@ -66,6 +92,22 @@ open class DrawingView: UIView, Drawable {
             _drawingLayer = drawingLayer
             layer.addSublayer(drawingLayer)
         }
+    }
+    
+    // MARK: - Cleaning
+    
+    private func emptyFlattenedLayers() {
+        for case let layer as CAShapeLayer in _sublayers {
+            layer.removeFromSuperlayer()
+        }
+    }
+    
+    public func clear() {
+        emptyFlattenedLayers()
+        _drawingLayer?.removeFromSuperlayer()
+        _drawingLayer = nil
+        points.removeAll()
+        layer.setNeedsDisplay()
     }
 }
 
