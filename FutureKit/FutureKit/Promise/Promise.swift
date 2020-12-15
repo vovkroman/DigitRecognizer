@@ -3,7 +3,7 @@ import Foundation
 open class Promise<Value>: Future<Value> {
     
     @inlinable
-    init(value: Value? = nil) {
+    public init(value: Value? = nil) {
         super.init()
 
         // If the value was already known at the time the promise
@@ -12,12 +12,12 @@ open class Promise<Value>: Future<Value> {
     }
     
     @inlinable
-    func resolve(with value: Value) {
+    public func resolve(with value: Value) {
         result = .success(value)
     }
 
     @inlinable
-    func reject(with error: Error) {
+    public func reject(with error: Error) {
         result = .failure(error)
     }
 }
