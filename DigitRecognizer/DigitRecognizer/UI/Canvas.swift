@@ -18,7 +18,7 @@ class Canvas: DrawingView {
         return promise
     }
     
-    func makeSnapshot(of layer: CALayer, bounds: CGRect) -> UIImage {
+    private func makeSnapshot(of layer: CALayer, bounds: CGRect) -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         let image = renderer.image { rendererContext in
             layer.render(in: rendererContext.cgContext)

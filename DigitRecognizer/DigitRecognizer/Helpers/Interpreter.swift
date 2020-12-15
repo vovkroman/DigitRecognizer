@@ -14,7 +14,7 @@ class Interpreter: NSObject {
 }
 
 extension Interpreter: Applyable {
-    func apply(_ presenter: Presenter) {
+    func apply(_ presenter: Recognizer.Presenter) {
         titleDescription.text = "I sure for \(presenter.guess) that this is \(presenter.digit)"
     }
 }

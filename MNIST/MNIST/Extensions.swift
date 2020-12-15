@@ -1,7 +1,19 @@
 import UIKit
 
 enum NNError: Error {
+    case MNISTFormatFailed
     case error(description: String)
+}
+
+extension NNError: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .MNISTFormatFailed:
+            return "Can't convert to MINST fromat"
+        default:
+            return ""
+        }
+    }
 }
 
 extension Bundle {

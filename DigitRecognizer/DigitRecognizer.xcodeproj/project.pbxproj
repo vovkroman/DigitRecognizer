@@ -98,6 +98,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6F88EC842589021800C5972C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6F06BE792583C4920047EC9A /* Canvas.swift */,
+				6FF40BE62587E6EF00102411 /* CanvasViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		6F88EC852589022900C5972C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6F88EC7C2588C55200C5972C /* Extensions.swift */,
+				6F88EC822588F1AA00C5972C /* Interpreter.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		6F88EC862589023E00C5972C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6FF40BE22587E59200102411 /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6F88EC872589024A00C5972C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6FF40BE42587E66E00102411 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6FAB7D72257CEC3900889031 = {
 			isa = PBXGroup;
 			children = (
@@ -120,17 +154,15 @@
 		6FAB7D7D257CEC3900889031 /* DigitRecognizer */ = {
 			isa = PBXGroup;
 			children = (
-				6FF40BE62587E6EF00102411 /* CanvasViewController.swift */,
+				6F88EC872589024A00C5972C /* Model */,
+				6F88EC862589023E00C5972C /* ViewModel */,
+				6F88EC852589022900C5972C /* Helpers */,
+				6F88EC842589021800C5972C /* UI */,
 				6FAB7D7E257CEC3900889031 /* AppDelegate.swift */,
 				6FAB7D84257CEC3900889031 /* Main.storyboard */,
 				6FAB7D87257CEC3A00889031 /* Assets.xcassets */,
 				6FAB7D89257CEC3A00889031 /* LaunchScreen.storyboard */,
 				6FAB7D8C257CEC3A00889031 /* Info.plist */,
-				6F06BE792583C4920047EC9A /* Canvas.swift */,
-				6FF40BE22587E59200102411 /* ViewModel.swift */,
-				6FF40BE42587E66E00102411 /* Model.swift */,
-				6F88EC7C2588C55200C5972C /* Extensions.swift */,
-				6F88EC822588F1AA00C5972C /* Interpreter.swift */,
 			);
 			path = DigitRecognizer;
 			sourceTree = "<group>";

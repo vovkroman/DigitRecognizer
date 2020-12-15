@@ -5,7 +5,13 @@ import FutureKit
 enum Recognizer {}
 
 protocol Applyable: class {
-    func apply(_ presenter: Presenter)
+    func apply(_ presenter: Recognizer.Presenter)
+}
+
+protocol Animatable {
+    var from: UIView { get }
+    var to: UIImageView { get }
+    func performSnapshot(_ image: UIImage)
 }
 
 class CanvasViewController: UIViewController {
@@ -19,9 +25,26 @@ class CanvasViewController: UIViewController {
         super.viewDidLoad()
         canvas.delegate = self
     }
+}
+
+extension CanvasViewController: DrawingDelegate {
+    func drawingDidStart(on view: DrawingView) {}
+    func drawingDidFinish(on view: DrawingView) {
+        canvas.makeSnapshot()
+            .animate(view: self)
+            .convertToPresenter(viewModel)
+            .apply(to: interpreter)
+    }
+}
+
+extension CanvasViewController: Animatable {
+    var from: UIView { return canvas }
+    var to: UIImageView { return interpreter.imageView }
     
-    func animateOldTextOffscreen(from: UIView, to: UIImageView, with shotImage: UIImage) {
-        guard let snapshot = from.snapshotView(afterScreenUpdates: false) else { return }
+    func performSnapshot(_ image: UIImage) {
+        guard let snapshot = from.snapshotView(afterScreenUpdates: false) else {
+            return
+        }
         from.addSubview(snapshot)
         let toPoint = to.convert(to.center, to: view)
         let toFrame = to.convert(to.frame, to: view)
@@ -31,20 +54,11 @@ class CanvasViewController: UIViewController {
                 snapshot.frame = toFrame
             }
             UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 0.2) {
-                to.image = shotImage
+                self.to.image = image
             }
         }, completion: { _ in
             snapshot.removeFromSuperview()
         })
-    }
-}
-
-extension CanvasViewController: DrawingDelegate {
-    func drawingDidStart(on view: DrawingView) {}
-    func drawingDidFinish(on view: DrawingView) {
-        canvas.makeSnapshot()
-            .convertToPresenter(viewModel)
-            .apply(to: interpreter)
     }
 }
 

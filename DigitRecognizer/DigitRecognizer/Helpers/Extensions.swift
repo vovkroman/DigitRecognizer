@@ -21,29 +21,38 @@ extension Array where Element: Comparable {
 
 extension Future where Value == [Float] {
     
-    func interpret() -> Future<Presenter> {
+    func interpret() -> Future<Recognizer.Presenter> {
         transformed { values in
             try .init(values)
         }
     }
 }
 
-extension Future where Value == UIImage {
-    func convertToPresenter(_ viewModel: Recognizer.ViewModel) -> Future<Presenter> {
+extension Future where Value == UIImage {    
+    func convertToPresenter(_ viewModel: Recognizer.ViewModel) -> Future<Recognizer.Presenter> {
         chained { value in
             return viewModel.fetch(value)
         }
     }
+    
+    func animate<T: Animatable>(view: T) -> Future<Value> {
+        chained { value in
+            DispatchQueue.main.async {
+                view.performSnapshot(value)
+            }
+            return self
+        }
+    }
 }
 
-extension Future where Value == Presenter {
+extension Future where Value == Recognizer.Presenter {
     @discardableResult
-    func apply<Type: Applyable>(to view: Type) -> Future<Value>{
+    func apply<Type: Applyable>(to view: Type) -> Future<Void>{
         chained { value in
-            let promise = Promise<Value>()
+            let promise = Promise<Void>()
             DispatchQueue.main.async {
                 view.apply(value)
-                promise.resolve(with: value)
+                promise.resolve(with: ())
             }
             return promise
         }

@@ -14,7 +14,6 @@ open class DrawingView: UIView, Drawable {
         return layer.sublayers ?? []
     }
     
-    @IBDesignable
     public weak var delegate: DrawingDelegate?
     
     let points: Points = Points(Constant.Points.maxCount)

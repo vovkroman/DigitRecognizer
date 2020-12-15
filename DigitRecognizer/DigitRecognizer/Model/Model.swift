@@ -2,7 +2,7 @@ import UIKit
 import FutureKit
 import MNIST
 
-enum RecognizerError: Error {
+enum MNISTError: Error {
     case cannotRecognize
 }
 
@@ -14,13 +14,10 @@ extension Recognizer {
         let globalWorker = DispatchQueue(label: "com.personal.digitRecognizer.global")
 
         func fetch(by image: UIImage) -> Future<[Float]> {
-            let worker = DispatchQueue(label: "com.personal.digitRecognizer.local",
-                                       attributes: .concurrent,
-                                       target: globalWorker)
             let promise = Promise<[Float]>()
-            worker.async { [weak self] in
-                guard let results = self?.ai?.predict(image: image) else {
-                    promise.reject(with: RecognizerError.cannotRecognize)
+            globalWorker.async { [weak self] in
+                guard let results = try? self?.ai?.predict(image: image) else {
+                    promise.reject(with: MNISTError.cannotRecognize)
                     return
                 }
                 promise.resolve(with: results)
