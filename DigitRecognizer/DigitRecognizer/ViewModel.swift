@@ -1,30 +1,30 @@
 import UIKit
 import FutureKit
 
-extension Recognizer {
+struct Presenter {
+    let digit: String
+    let guess: Float
     
-    struct Presenter {
-        let digit: String
-        let guess: Float
+    init(_ outputs: [Float]) throws {
+        guard let digit = outputs.argmax() else {
+            throw RecognizerError.cannotRecognize
+        }
+        self.digit = "\(digit)"
+        self.guess = outputs[digit]
     }
+}
+
+extension Recognizer {
     
     class ViewModel {
         
         private let model = Model()
+        private var item: Presenter?
         
-        func fetch(_ anImage: UIImage) -> Future<[Presenter]> {
-            let promise = Promise<[Presenter]>()
-            model.fetch(by: anImage).observe { (result) in
-                switch result {
-                case .failure(let error):
-                    promise.reject(with: error)
-                    break
-                case .success(let outputs):
-                    let presenters = outputs.enumerated().compactMap{ Presenter(digit: "\($0)", guess: $1) }
-                    promise.resolve(with: presenters.sorted(by: { $0.guess > $1.guess }))
-                }
-            }
-            return promise
+        func fetch(_ anImage: UIImage) -> Future<Presenter> {
+            return model
+                .fetch(by: anImage)
+                .interpret()
         }
         
         init() {}

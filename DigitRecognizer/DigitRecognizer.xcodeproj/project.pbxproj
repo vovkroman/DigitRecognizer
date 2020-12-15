@@ -12,8 +12,9 @@
 		6F06BE822583F0920047EC9A /* Canvas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F06BE7F2583F0920047EC9A /* Canvas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F06BE832583F0920047EC9A /* MNIST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F06BE802583F0920047EC9A /* MNIST.framework */; };
 		6F06BE842583F0920047EC9A /* MNIST.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F06BE802583F0920047EC9A /* MNIST.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6F88EC7D2588C55200C5972C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88EC7C2588C55200C5972C /* Extensions.swift */; };
+		6F88EC832588F1AA00C5972C /* Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88EC822588F1AA00C5972C /* Interpreter.swift */; };
 		6FAB7D7F257CEC3900889031 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7D7E257CEC3900889031 /* AppDelegate.swift */; };
-		6FAB7D83257CEC3900889031 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7D82257CEC3900889031 /* CanvasViewController.swift */; };
 		6FAB7D86257CEC3900889031 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB7D84257CEC3900889031 /* Main.storyboard */; };
 		6FAB7D88257CEC3A00889031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB7D87257CEC3A00889031 /* Assets.xcassets */; };
 		6FAB7D8B257CEC3A00889031 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB7D89257CEC3A00889031 /* LaunchScreen.storyboard */; };
@@ -52,9 +53,10 @@
 		6F06BE792583C4920047EC9A /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		6F06BE7F2583F0920047EC9A /* Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F06BE802583F0920047EC9A /* MNIST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MNIST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F88EC7C2588C55200C5972C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		6F88EC822588F1AA00C5972C /* Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpreter.swift; sourceTree = "<group>"; };
 		6FAB7D7B257CEC3900889031 /* DigitRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FAB7D7E257CEC3900889031 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6FAB7D82257CEC3900889031 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		6FAB7D85257CEC3900889031 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6FAB7D87257CEC3A00889031 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FAB7D8A257CEC3A00889031 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -120,7 +122,6 @@
 			children = (
 				6FF40BE62587E6EF00102411 /* CanvasViewController.swift */,
 				6FAB7D7E257CEC3900889031 /* AppDelegate.swift */,
-				6FAB7D82257CEC3900889031 /* CanvasViewController.swift */,
 				6FAB7D84257CEC3900889031 /* Main.storyboard */,
 				6FAB7D87257CEC3A00889031 /* Assets.xcassets */,
 				6FAB7D89257CEC3A00889031 /* LaunchScreen.storyboard */,
@@ -128,6 +129,8 @@
 				6F06BE792583C4920047EC9A /* Canvas.swift */,
 				6FF40BE22587E59200102411 /* ViewModel.swift */,
 				6FF40BE42587E66E00102411 /* Model.swift */,
+				6F88EC7C2588C55200C5972C /* Extensions.swift */,
+				6F88EC822588F1AA00C5972C /* Interpreter.swift */,
 			);
 			path = DigitRecognizer;
 			sourceTree = "<group>";
@@ -246,10 +249,11 @@
 			files = (
 				6FF40BE72587E6EF00102411 /* CanvasViewController.swift in Sources */,
 				6FF40BE52587E66E00102411 /* Model.swift in Sources */,
-				6FAB7D83257CEC3900889031 /* CanvasViewController.swift in Sources */,
 				6FAB7D7F257CEC3900889031 /* AppDelegate.swift in Sources */,
 				6FF40BE32587E59200102411 /* ViewModel.swift in Sources */,
+				6F88EC832588F1AA00C5972C /* Interpreter.swift in Sources */,
 				6F06BE7A2583C4920047EC9A /* Canvas.swift in Sources */,
+				6F88EC7D2588C55200C5972C /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

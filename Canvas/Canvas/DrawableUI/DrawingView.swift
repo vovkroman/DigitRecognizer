@@ -14,6 +14,7 @@ open class DrawingView: UIView, Drawable {
         return layer.sublayers ?? []
     }
     
+    @IBDesignable
     public weak var delegate: DrawingDelegate?
     
     let points: Points = Points(Constant.Points.maxCount)
@@ -49,7 +50,7 @@ open class DrawingView: UIView, Drawable {
     
     private func tryToFinishDrawing() {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(finishedDrawing), object: nil)
-        perform(#selector(finishedDrawing), with: nil, afterDelay: 2.0)
+        perform(#selector(finishedDrawing), with: nil, afterDelay: 1.5)
     }
     
     @objc private func finishedDrawing() {

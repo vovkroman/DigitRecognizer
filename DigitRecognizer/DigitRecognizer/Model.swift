@@ -2,11 +2,11 @@ import UIKit
 import FutureKit
 import MNIST
 
+enum RecognizerError: Error {
+    case cannotRecognize
+}
+
 extension Recognizer {
-    
-    enum RecognizerError: Error {
-        case cannotRecognize
-    }
     
     class Model {
         private let ai = MNIST()
