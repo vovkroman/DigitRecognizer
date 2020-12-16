@@ -21,7 +21,9 @@ public class MNIST {
     }
     
     public func predict(image: UIImage) throws -> [Float] {
-        guard let mnistImage = try? MNISTImage(image) else { throw NNError.MNISTFormatFailed }
+        guard let mnistImage = try? MNISTImage(image) else {
+            throw NNError.MNISTFormatFailed
+        }
         return predict(input: mnistImage.mnistData)
     }
     

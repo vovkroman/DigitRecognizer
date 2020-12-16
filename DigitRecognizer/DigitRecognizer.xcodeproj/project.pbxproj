@@ -14,6 +14,8 @@
 		6F06BE842583F0920047EC9A /* MNIST.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F06BE802583F0920047EC9A /* MNIST.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F88EC7D2588C55200C5972C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88EC7C2588C55200C5972C /* Extensions.swift */; };
 		6F88EC832588F1AA00C5972C /* Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88EC822588F1AA00C5972C /* Interpreter.swift */; };
+		6F88EC892589271A00C5972C /* FutureKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F88EC882589271A00C5972C /* FutureKit.framework */; };
+		6F88EC8A2589271B00C5972C /* FutureKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F88EC882589271A00C5972C /* FutureKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6FAB7D7F257CEC3900889031 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7D7E257CEC3900889031 /* AppDelegate.swift */; };
 		6FAB7D86257CEC3900889031 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB7D84257CEC3900889031 /* Main.storyboard */; };
 		6FAB7D88257CEC3A00889031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FAB7D87257CEC3A00889031 /* Assets.xcassets */; };
@@ -43,6 +45,7 @@
 			files = (
 				6F06BE842583F0920047EC9A /* MNIST.framework in Embed Frameworks */,
 				6F06BE822583F0920047EC9A /* Canvas.framework in Embed Frameworks */,
+				6F88EC8A2589271B00C5972C /* FutureKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,6 +58,7 @@
 		6F06BE802583F0920047EC9A /* MNIST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MNIST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F88EC7C2588C55200C5972C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6F88EC822588F1AA00C5972C /* Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpreter.swift; sourceTree = "<group>"; };
+		6F88EC882589271A00C5972C /* FutureKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FutureKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FAB7D7B257CEC3900889031 /* DigitRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FAB7D7E257CEC3900889031 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FAB7D85257CEC3900889031 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 			files = (
 				6F06BE832583F0920047EC9A /* MNIST.framework in Frameworks */,
 				6F06BE812583F0920047EC9A /* Canvas.framework in Frameworks */,
+				6F88EC892589271A00C5972C /* FutureKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +97,7 @@
 		6F06BE7E2583F0920047EC9A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6F88EC882589271A00C5972C /* FutureKit.framework */,
 				6F06BE7F2583F0920047EC9A /* Canvas.framework */,
 				6F06BE802583F0920047EC9A /* MNIST.framework */,
 			);

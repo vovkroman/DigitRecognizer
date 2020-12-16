@@ -77,11 +77,11 @@
 		6F9D375F2580C4AD00EFD055 /* FutureKit */ = {
 			isa = PBXGroup;
 			children = (
+				6F88EC802588C8F600C5972C /* Extensions.swift */,
 				6F9D378A2580C85400EFD055 /* Promise */,
 				6F9D37892580C84600EFD055 /* Future */,
 				6F9D37602580C4AD00EFD055 /* FutureKit.h */,
 				6F9D37612580C4AD00EFD055 /* Info.plist */,
-				6F88EC802588C8F600C5972C /* Extensions.swift */,
 			);
 			path = FutureKit;
 			sourceTree = "<group>";

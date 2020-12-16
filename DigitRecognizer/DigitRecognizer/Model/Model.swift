@@ -10,8 +10,7 @@ extension Recognizer {
     
     class Model {
         private let ai = MNIST()
-        
-        let globalWorker = DispatchQueue(label: "com.personal.digitRecognizer.global")
+        private let globalWorker = DispatchQueue(label: "com.personal.digitRecognizer.global")
 
         func fetch(by image: UIImage) -> Future<[Float]> {
             let promise = Promise<[Float]>()

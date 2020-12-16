@@ -2,13 +2,13 @@ import UIKit
 import FutureKit
 
 enum PresenterError: Error {
-    case argMaxNil
+    case argmaxNil
 }
 
 extension PresenterError: CustomStringConvertible {
     var description: String {
         switch self {
-        case .argMaxNil:
+        case .argmaxNil:
             return "Argmax method was defined as nill"
         }
     }
@@ -22,7 +22,7 @@ extension Recognizer {
         
         init(_ outputs: [Float]) throws {
             guard let digit = outputs.argmax() else {
-                throw PresenterError.argMaxNil
+                throw PresenterError.argmaxNil
             }
             self.digit = "\(digit)"
             self.guess = outputs[digit]
@@ -35,7 +35,7 @@ extension Recognizer {
         private let model = Model()
 
         func fetch(_ anImage: UIImage) -> Future<Presenter> {
-            return try model
+            return model
                 .fetch(by: anImage)
                 .interpret()
         }
