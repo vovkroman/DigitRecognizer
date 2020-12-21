@@ -14,7 +14,7 @@ extension Array where Element: Comparable {
 
 extension Future where Value == [Float] {
     
-    func interpret() -> Future<Recognizer.Presenter> {
+    func makePresenter() throws -> Future<Recognizer.Presenter> {
         transformed { values in
             try .init(values)
         }
@@ -22,9 +22,9 @@ extension Future where Value == [Float] {
 }
 
 extension Future where Value == UIImage {    
-    func convertOf(_ viewModel: Recognizer.ViewModel) -> Future<Recognizer.Presenter> {
+    func convertOf(_ viewModel: Recognizer.ViewModel) throws -> Future<Recognizer.Presenter> {
         chained { value in
-            return viewModel.fetch(value)
+            return try viewModel.fetch(value)
         }
     }
     

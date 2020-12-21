@@ -34,10 +34,10 @@ extension Recognizer {
     class ViewModel {
         private let model = Model()
 
-        func fetch(_ anImage: UIImage) -> Future<Presenter> {
-            return model
+        func fetch(_ anImage: UIImage) throws -> Future<Presenter> {
+            return try model
                 .fetch(by: anImage)
-                .interpret()
+                .makePresenter()
         }
         
         init() {}

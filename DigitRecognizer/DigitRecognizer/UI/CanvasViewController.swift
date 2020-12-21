@@ -30,7 +30,7 @@ class CanvasViewController: UIViewController {
 extension CanvasViewController: DrawingDelegate {
     func drawingDidStart(on view: DrawingView) {}
     func drawingDidFinish(on view: DrawingView) {
-        canvas.makeSnapshot()
+        try? canvas.makeSnapshot()
             .animate(view: self)
             .convertOf(viewModel)
             .apply(to: interpreter)

@@ -6,6 +6,15 @@ enum MNISTError: Error {
     case cannotRecognize
 }
 
+extension MNISTError: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .cannotRecognize:
+            return "MNIST.framework returns nil for some reason"
+        }
+    }
+}
+
 extension Recognizer {
     
     class Model {
