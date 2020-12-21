@@ -18,9 +18,9 @@ struct NeuralNetwork {
     }
 }
 
-class Builder {
+final class Builder {
     
-    var dataType: BNNSDataType {
+    private var dataType: BNNSDataType {
         get {
             return .float
         }
@@ -39,7 +39,7 @@ class Builder {
         inputShape = shape
         
         if let lastFilter = descriptors.last {
-            lastFilter.output = shape
+            lastFilter._output = shape
         }
         
         return self
@@ -59,42 +59,51 @@ class Builder {
         return self
     }
     
+    /// Build method to setup activation function
+    /// - Parameter function: BNNS activation function format
     func activation(function: BNNSActivationFunction) -> Self {
         activation = function
         return self
     }
     
+    /// Build method to Add ConvolutionLayer, with params and bias
+    /// - Parameters:
+    ///   - weights: parameter values
+    ///   - bias: bias value
     func convolve(weights: [Float32], bias: [Float32]) -> Self {
-        let desc = Descriptor.ConvolutionLayer()
-        desc.dataType = dataType
-        desc.input = inputShape
-        desc.kernel = kernel
-        desc.stride = stride
-        desc.weights = weights
-        desc.bias = bias
-        desc.activation = activation
+        let desc = Descriptor.ConvolutionLayer { builder in
+            builder.dataType = dataType
+            builder.input = inputShape
+            builder.kernel = kernel
+            builder.stride = stride
+            builder.weights = weights
+            builder.bias = bias
+            builder.activation = activation
+        }
         
         descriptors.append(desc)
         return self
     }
     
     func maxpool(width: Int, height: Int) -> Self {
-        let desc = Descriptor.MaxPoolingLayer()
-        desc.dataType = dataType
-        desc.input = inputShape
-        desc.kernel = .init(width: width, height: height)
+        let desc = Descriptor.MaxPoolingLayer { builder in
+            builder.dataType = dataType
+            builder.input = inputShape
+            builder.kernel = .init(width: width, height: height)
+        }
         
         descriptors.append(desc)
         return self
     }
     
     func connect(weights: [Float32], bias: [Float32]) -> Self {
-        let desc = Descriptor.FullyConnectedLayer()
-        desc.dataType = dataType
-        desc.input = inputShape
-        desc.weights = weights
-        desc.bias = bias
-        desc.activation = activation
+        let desc = Descriptor.FullyConnectedLayer { builder in
+            builder.dataType = dataType
+            builder.input = inputShape
+            builder.weights = weights
+            builder.bias = bias
+            builder.activation = activation
+        }
         
         descriptors.append(desc)
         return self
