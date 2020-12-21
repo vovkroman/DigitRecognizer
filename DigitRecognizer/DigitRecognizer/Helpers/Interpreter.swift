@@ -14,7 +14,7 @@ final class Interpreter: NSObject {
 
 extension Interpreter: Applyable {
     func apply(_ presenter: Recognizer.Presenter) {
-        titleResult.isHidden = true
+        titleResult.isHidden = false
         titleDescription.attributedText = presenter.message
     }
 }

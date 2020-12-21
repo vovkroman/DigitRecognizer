@@ -111,6 +111,7 @@ open class DrawingView: UIView, Drawable {
     }
     
     public func clear() {
+        cancelPreviousDrawing()
         emptyFlattenedLayers()
         _drawingLayer?.removeFromSuperlayer()
         _drawingLayer = nil

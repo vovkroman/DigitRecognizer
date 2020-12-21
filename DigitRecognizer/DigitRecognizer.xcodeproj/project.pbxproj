@@ -23,6 +23,7 @@
 		6FAB7D96257CEC3A00889031 /* DigitRecognizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAB7D95257CEC3A00889031 /* DigitRecognizerTests.swift */; };
 		6FEAD79F2590B504006A439B /* NSAttributedStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEAD79E2590B504006A439B /* NSAttributedStringBuilder.swift */; };
 		6FEAD7A12590B605006A439B /* MessageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEAD7A02590B605006A439B /* MessageResult.swift */; };
+		6FEAD7AD25912507006A439B /* RecognizerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEAD7AC25912507006A439B /* RecognizerNavigationController.swift */; };
 		6FF40BE32587E59200102411 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF40BE22587E59200102411 /* ViewModel.swift */; };
 		6FF40BE52587E66E00102411 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF40BE42587E66E00102411 /* Model.swift */; };
 		6FF40BE72587E6EF00102411 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF40BE62587E6EF00102411 /* CanvasViewController.swift */; };
@@ -72,6 +73,7 @@
 		6FAB7D97257CEC3A00889031 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FEAD79E2590B504006A439B /* NSAttributedStringBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringBuilder.swift; sourceTree = "<group>"; };
 		6FEAD7A02590B605006A439B /* MessageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResult.swift; sourceTree = "<group>"; };
+		6FEAD7AC25912507006A439B /* RecognizerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizerNavigationController.swift; sourceTree = "<group>"; };
 		6FF40BE22587E59200102411 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		6FF40BE42587E66E00102411 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		6FF40BE62587E6EF00102411 /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				6F06BE792583C4920047EC9A /* Canvas.swift */,
 				6FF40BE62587E6EF00102411 /* CanvasViewController.swift */,
+				6FEAD7AC25912507006A439B /* RecognizerNavigationController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				6FAB7D7F257CEC3900889031 /* AppDelegate.swift in Sources */,
 				6FF40BE32587E59200102411 /* ViewModel.swift in Sources */,
 				6F88EC832588F1AA00C5972C /* Interpreter.swift in Sources */,
+				6FEAD7AD25912507006A439B /* RecognizerNavigationController.swift in Sources */,
 				6F06BE7A2583C4920047EC9A /* Canvas.swift in Sources */,
 				6F88EC7D2588C55200C5972C /* Extensions.swift in Sources */,
 			);

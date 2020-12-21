@@ -25,6 +25,12 @@ class CanvasViewController: UIViewController {
         super.viewDidLoad()
         canvas.delegate = self
     }
+    
+    // MARK: - Actions
+    
+    @IBAction private func didClear(_ sender: Any) {
+        canvas.clear()
+    }
 }
 
 extension CanvasViewController: DrawingDelegate {

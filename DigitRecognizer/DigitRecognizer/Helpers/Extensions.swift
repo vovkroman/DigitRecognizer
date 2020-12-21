@@ -12,6 +12,19 @@ extension Array where Element: Comparable {
     }
 }
 
+protocol Transparentable {
+    func transparentBar()
+}
+
+extension Transparentable where Self : UINavigationController {
+    
+    func transparentBar() {
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.isTranslucent = true
+    }
+}
+
 extension Future where Value == [Float] {
     
     func makePresenter() throws -> Future<Recognizer.Presenter> {
