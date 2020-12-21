@@ -16,8 +16,8 @@ protocol Animatable {
 
 class CanvasViewController: UIViewController {
     
-    @IBOutlet weak var canvas: Canvas!
-    @IBOutlet var interpreter: Interpreter!
+    @IBOutlet private weak var canvas: Canvas!
+    @IBOutlet private var interpreter: Interpreter!
     
     private let viewModel = Recognizer.ViewModel()
     
