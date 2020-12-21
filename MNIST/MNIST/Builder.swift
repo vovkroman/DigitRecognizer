@@ -4,17 +4,18 @@ struct NeuralNetwork {
     let network: [Filter]
     
     func inference(input: [Float32]) -> [Float32] {
-        var outputs = input
-        
-        for layer in network {
-            let inputs = outputs
-            outputs = Array(repeating: 0, count: layer.shape.size)
+        autoreleasepool {
+            var outputs = input
+            for layer in network {
+                let inputs = outputs
+                outputs = Array(repeating: 0, count: layer.shape.size)
+                
+                guard BNNSFilterApply(layer.filter, inputs, &outputs) == 0
+                    else { return [] }
+            }
             
-            guard BNNSFilterApply(layer.filter, inputs, &outputs) == 0
-                else { return [] }
+            return outputs
         }
-        
-        return outputs
     }
 }
 
