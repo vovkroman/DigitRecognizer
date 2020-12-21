@@ -1,12 +1,26 @@
 import UIKit
 
+protocol ViewStatable: class {
+    func viewDidLoaded()
+    func viewWillAppear()
+    func viewDidAppear()
+}
+
 final class Interpreter: NSObject {
-    @IBOutlet weak var titleDescription: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak private(set) var titleDescription: UILabel!
+    @IBOutlet weak private(set) var imageView: UIImageView!
+    @IBOutlet weak private(set) var titleResult: UILabel!
 }
 
 extension Interpreter: Applyable {
     func apply(_ presenter: Recognizer.Presenter) {
-        titleDescription.text = "I sure for \(presenter.guess) that this is \(presenter.digit)"
+        titleResult.isHidden = false
+        titleDescription.attributedText = presenter.message
     }
+}
+
+extension Interpreter: ViewStatable {
+    func viewDidLoaded() {}
+    func viewWillAppear() {}
+    func viewDidAppear() {}
 }

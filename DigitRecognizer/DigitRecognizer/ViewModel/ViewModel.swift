@@ -17,15 +17,20 @@ extension PresenterError: CustomStringConvertible {
 extension Recognizer {
     
     struct Presenter {
-        let digit: String
-        let guess: Float
+        let message: NSAttributedString
         
-        init(_ outputs: [Float]) throws {
+        init(_ outputs: [Float], threshold: Float = 0.6) throws {
             guard let digit = outputs.argmax() else {
                 throw PresenterError.argmaxNil
             }
-            self.digit = "\(digit)"
-            self.guess = outputs[digit]
+            let guess = outputs[digit]
+            var result: Result.Message = .default
+            if guess > threshold {
+                result = .sure(prob: guess, digit: digit)
+            } else {
+                result = .notSure(prob: guess)
+            }
+            message = result.attributedDescription
         }
     }
 }

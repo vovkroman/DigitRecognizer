@@ -21,9 +21,7 @@ struct NeuralNetwork {
 
 final class Builder {
     
-    private var dataType: BNNSDataType {
-        return .float
-    }
+    private var dataType: BNNSDataType { return .float }
     
     private var descriptors: ContiguousArray<Descriptor.Layer> = []
     

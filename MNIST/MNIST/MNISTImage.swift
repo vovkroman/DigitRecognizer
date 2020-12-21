@@ -3,7 +3,7 @@ import UIKit
 public class MNISTImage {
     public let image: UIImage
     
-    var mnistData: [Float32] {
+    public var mnistData: [Float32] {
         guard let data = image.bytes else { return [] }
         return data.map { 1 - Float32($0) / 255.0 }
     }
