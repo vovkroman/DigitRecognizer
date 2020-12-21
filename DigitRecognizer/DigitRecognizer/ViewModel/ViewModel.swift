@@ -19,7 +19,7 @@ extension Recognizer {
     struct Presenter {
         let message: NSAttributedString
         
-        init(_ outputs: [Float], threshold: Float = 0.6) throws {
+        init(_ outputs: [Float], threshold: Float = 0.65) throws {
             guard let digit = outputs.argmax() else {
                 throw PresenterError.argmaxNil
             }

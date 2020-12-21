@@ -4,14 +4,14 @@ import FutureKit
 
 class Canvas: DrawingView {
     
-    private let worker = DispatchQueue.global(qos: .userInteractive)
+    private typealias ViewSnapshot = (layer: CALayer, bounds: CGRect)
     
-    typealias ViewSnapshot = (layer: CALayer, bounds: CGRect)
+    private let _worker = DispatchQueue.global(qos: .userInteractive)
     
     func makeSnapshot() -> Future<UIImage> {
         let view = ViewSnapshot(layer: layer, bounds: bounds)
         let promise = Promise<UIImage>()
-        worker.async {
+        _worker.async {
             let image = self.makeSnapshot(of: view.layer, bounds: view.bounds)
             promise.resolve(with: image)
         }

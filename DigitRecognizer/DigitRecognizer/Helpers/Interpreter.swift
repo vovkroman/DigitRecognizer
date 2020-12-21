@@ -1,9 +1,9 @@
 import UIKit
 
 protocol ViewStatable: class {
-    func viewDidLoaded()
-    func viewWillAppear()
-    func viewDidAppear()
+    func onViewDidLoaded()
+    func onViewWillAppear(is animated: Bool)
+    func onViewDidAppear(is animated: Bool)
 }
 
 final class Interpreter: NSObject {
@@ -14,13 +14,17 @@ final class Interpreter: NSObject {
 
 extension Interpreter: Applyable {
     func apply(_ presenter: Recognizer.Presenter) {
-        titleResult.isHidden = false
+        titleResult.isHidden = true
         titleDescription.attributedText = presenter.message
     }
 }
 
 extension Interpreter: ViewStatable {
-    func viewDidLoaded() {}
-    func viewWillAppear() {}
-    func viewDidAppear() {}
+    func onViewDidLoaded() {
+        //initially setup views
+    }
+    
+    func onViewWillAppear(is animated: Bool) {}
+    
+    func onViewDidAppear(is animated: Bool) {}
 }
