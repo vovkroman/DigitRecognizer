@@ -32,7 +32,7 @@ extension CanvasViewController: DrawingDelegate {
     func drawingDidFinish(on view: DrawingView) {
         canvas.makeSnapshot()
             .animate(view: self)
-            .convertToPresenter(viewModel)
+            .convertOf(viewModel)
             .apply(to: interpreter)
     }
 }
