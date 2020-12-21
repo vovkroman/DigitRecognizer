@@ -17,7 +17,7 @@ open class DrawingView: UIView, Drawable {
     public weak var delegate: DrawingDelegate?
     
     let points: Points = Points(Constant.Points.maxCount)
-
+    
     // MARK: - Initializations
     
     public required init?(coder: NSCoder) {
@@ -48,8 +48,16 @@ open class DrawingView: UIView, Drawable {
     }
     
     private func tryToFinishDrawing() {
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(finishedDrawing), object: nil)
-        perform(#selector(finishedDrawing), with: nil, afterDelay: 1.5)
+        weak var weakSelf = self
+        guard let _weak = weakSelf else { return }
+        NSObject.cancelPreviousPerformRequests(withTarget: _weak, selector: #selector(finishedDrawing), object: nil)
+        _weak.perform(#selector(finishedDrawing), with: nil, afterDelay: 1.5)
+    }
+    
+    private func cancelPreviousDrawing() {
+        weak var weakSelf = self
+        guard let _weak = weakSelf else { return }
+        NSObject.cancelPreviousPerformRequests(withTarget: _weak, selector: #selector(finishedDrawing), object: nil)
     }
     
     @objc private func finishedDrawing() {
@@ -60,7 +68,7 @@ open class DrawingView: UIView, Drawable {
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(finishedDrawing), object: nil)
+        cancelPreviousDrawing()
         delegate?.drawingDidStart(on: self)
     }
     
