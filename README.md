@@ -28,15 +28,15 @@ In the current implementation, the second approach was applied. Mechanism of dra
 
 Follow the [link](https://github.com/vovkroman/DigitRecognizer/tree/develop/Canvas/Canvas) to get acquainted.
 - [x] **MNIST** - framework implementing the logic of digit recognition, by given image. 
-It has been implemented using Apple's [**BNNS**](https://developer.apple.com/documentation/accelerate/bnns). **BNNS** library is a collection of functions that you use to construct neural networks for training and inference. It’s supported in macOS, iOS, tvOS, and watchOS. [**BNNS**] provides routines optimized for high performance and low-energy consumption across all CPUs supported on those platforms. 
+It has been implemented using Apple's [**BNNS**](https://developer.apple.com/documentation/accelerate/bnns). **BNNS** library is a collection of functions that you use to construct neural networks for training and inference. It’s supported in macOS, iOS, tvOS, and watchOS. **BNNS** provides routines optimized for high performance and low-energy consumption across all CPUs supported on those platforms. 
 
 To gain the final result, a pretty confident model **Tensorflow** was used. Here pre-trained model was used [mnist-predict-from-model.ipynb](https://github.com/vovkroman/DigitRecognizer/blob/develop/MNIST/mnist-predict-from-model.ipynb), but the full TensorFlow script from the tutorial to generate the model [mnist-nn.ipynb](https://github.com/vovkroman/DigitRecognizer/blob/develop/MNIST/mnist-nn.ipynb) has been provided as well.
 
-Let's focus on the architecture of Neural Network ([LeNet](https://en.wikipedia.org/wiki/LeNet)):
+Let's focus on the architecture of Neural Network (basicaly, here used [LeNet](https://en.wikipedia.org/wiki/LeNet) with some modifications):
 
 ![](Sources/final_nn_scheme.png)
 
-- Input data is image 28X28 (follow the [link](http://yann.lecun.com/exdb/mnist/) to get acquainted with MNIST dataset, used to train NN);
+- Input data is image 28X28 (follow the [link](http://yann.lecun.com/exdb/mnist/) to get acquainted with **MNIST dataset**, used to train NN);
 - Apply convolution 5X5 32 channel kernel, to produce 28x28 32 channel feature maps;
 - Apply max pooling 2X2 kernel, to produce 14x14 32 channel feature maps;
 - Apply convolution 5x5 64 kernel channel, to produce 14x14 64 channel kernel feature maps;
@@ -45,5 +45,11 @@ Let's focus on the architecture of Neural Network ([LeNet](https://en.wikipedia.
 - Apply multiplies a matrix (fully connected layer) to produce vector of 1024 values;
 - Apply multiplies a matrix (fully connected layer) to produce vector of 10 values;
 - Apply softmax to get probabilities of every value;
+
+And then, once NN is trained, we convert weights and biases into **.dataset** format and apply them onto Neural Network written in **BNNS**. But here we should be aware of **BNNS** is using a specific memory layout for the weights (thanks to [machinethink.net](https://machinethink.net/blog/apple-deep-learning-bnns-versus-metal-cnn/)):
+
+```
+weights[ outputChannel ][ inputChannel ][ kernelY ][ kernelX ]
+```
 
 - [x] **Digit Recognizer** - iOS target which aggregates all frameworks listed above.
