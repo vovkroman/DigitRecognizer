@@ -13,7 +13,7 @@ final class Interpreter: NSObject {
 }
 
 extension Interpreter: Applyable {
-    func apply(_ presenter: Recognizer.Presenter) {
+    func apply(_ presenter: Recognizer.Node) {
         titleResult.isHidden = false
         titleDescription.attributedText = presenter.message
     }
@@ -24,7 +24,11 @@ extension Interpreter: ViewStatable {
         //initially setup views
     }
     
-    func onViewWillAppear(is animated: Bool) {}
+    func onViewWillAppear(is animated: Bool) {
+        //to do some changes on view will appear
+    }
     
-    func onViewDidAppear(is animated: Bool) {}
+    func onViewDidAppear(is animated: Bool) {
+        //to do some changes on view did appear
+    }
 }

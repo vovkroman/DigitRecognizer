@@ -27,7 +27,7 @@ extension Transparentable where Self : UINavigationController {
 
 extension Future where Value == [Float] {
     
-    func makePresenter() throws -> Future<Recognizer.Presenter> {
+    func makePresenter() throws -> Future<Recognizer.Node> {
         transformed { values in
             try .init(values)
         }
@@ -35,7 +35,7 @@ extension Future where Value == [Float] {
 }
 
 extension Future where Value == UIImage {    
-    func convertOf(_ viewModel: Recognizer.ViewModel) throws -> Future<Recognizer.Presenter> {
+    func convertOf(_ viewModel: Recognizer.ViewModel) throws -> Future<Recognizer.Node> {
         chained { value in
             return try viewModel.fetch(value)
         }
@@ -51,7 +51,7 @@ extension Future where Value == UIImage {
     }
 }
 
-extension Future where Value == Recognizer.Presenter {
+extension Future where Value == Recognizer.Node {
     @discardableResult
     func apply<Type: Applyable>(to view: Type) -> Future<Void>{
         chained { value in

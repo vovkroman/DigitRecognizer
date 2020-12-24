@@ -5,7 +5,7 @@ import FutureKit
 enum Recognizer {}
 
 protocol Applyable: class {
-    func apply(_ presenter: Recognizer.Presenter)
+    func apply(_ presenter: Recognizer.Node)
 }
 
 protocol Animatable {

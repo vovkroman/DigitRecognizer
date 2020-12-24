@@ -1,11 +1,11 @@
 import UIKit
 import FutureKit
 
-enum PresenterError: Error {
+enum NodeError: Error {
     case argmaxNil
 }
 
-extension PresenterError: CustomStringConvertible {
+extension NodeError: CustomStringConvertible {
     var description: String {
         switch self {
         case .argmaxNil:
@@ -16,17 +16,17 @@ extension PresenterError: CustomStringConvertible {
 
 extension Recognizer {
     
-    struct Presenter {
+    struct Node {
         let message: NSAttributedString
         
         init(_ outputs: [Float], threshold: Float = 0.65) throws {
             guard let digit = outputs.argmax() else {
-                throw PresenterError.argmaxNil
+                throw NodeError.argmaxNil
             }
             let guess = outputs[digit]
             var result: Result.Message = .default
             if guess > threshold {
-                result = .sure(prob: guess, digit: digit)
+                result = .sure(prob: outputs[digit], digit: digit)
             } else {
                 result = .notSure(prob: guess)
             }
@@ -39,7 +39,7 @@ extension Recognizer {
     class ViewModel {
         private let model = Model()
 
-        func fetch(_ anImage: UIImage) throws -> Future<Presenter> {
+        func fetch(_ anImage: UIImage) throws -> Future<Node> {
             return try model
                 .fetch(by: anImage)
                 .makePresenter()
