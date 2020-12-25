@@ -13,7 +13,7 @@ extension Array where Element: Comparable {
 }
 
 extension UIImage {
-    static func makeOptimizedImage(from image: UIImage, with size: CGSize) -> UIImage {
+    static func resize(from image: UIImage, with size: CGSize) -> UIImage {
         let imageSize: CGSize = size
         UIGraphicsBeginImageContextWithOptions(imageSize, true, UIScreen.main.scale)
         image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
@@ -43,6 +43,7 @@ extension UIView {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         defer { UIGraphicsEndImageContext() }
         let view = UIView(frame: frame)
+        view.layer.contentsScale = UIScreen.main.scale
         view.layer.contents = image?.cgImage
         return view
     }
@@ -77,9 +78,10 @@ extension Future where Value == UIImage {
         }
     }
     
-    func animate<T: Animatable>(view: T, into size: CGSize) -> Future<Value> {
+    func animate<T: Animatable>(view: T) -> Future<Value> {
         chained { [unowned self] value in
-            let optimizedImage = UIImage.makeOptimizedImage(from: value, with: size)
+            let size = view.to.frame.size
+            let optimizedImage = UIImage.resize(from: value, with: size)
             DispatchQueue.main.async {
                 view.performSnapshot(optimizedImage)
             }

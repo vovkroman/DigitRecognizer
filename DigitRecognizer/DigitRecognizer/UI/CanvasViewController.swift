@@ -36,10 +36,9 @@ class CanvasViewController: UIViewController {
 extension CanvasViewController: DrawingDelegate {
     func drawingDidStart(on view: DrawingView) {}
     func drawingDidFinish(on view: DrawingView) {
-        let size = interpreter.imageView.frame.size
         do {
             try canvas.makeSnapshot()
-                .animate(view: self, into: size)
+                .animate(view: self)
                 .convertOf(viewModel)
                 .apply(to: interpreter)
         } catch {
