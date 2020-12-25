@@ -12,6 +12,29 @@ extension Array where Element: Comparable {
     }
 }
 
+extension UIImage {
+    static func makeOptimizedImage(from image: UIImage) -> UIImage {
+        let imageSize: CGSize = image.size
+        UIGraphicsBeginImageContextWithOptions(imageSize, true, UIScreen.main.scale)
+        image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
+        let optimizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return optimizedImage ?? UIImage()
+    }
+//    static func makeOptimizedImage(from image: UIImage) -> UIImage {
+//        let config = UIGraphicsImageRendererFormat()
+//        config.opaque = true
+//        let render = UIGraphicsImageRenderer(size: image.size, format: config)
+//        let imageSize: CGSize = image.size
+//        return  render.image { ctx in
+//            UIColor.white.set()
+//            let rect = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
+//            ctx.fill(rect)
+//            image.draw(in: rect, blendMode: .multiply, alpha: 0.5)
+//        }
+//    }
+}
+
 protocol Transparentable {
     func transparentBar()
 }
@@ -43,8 +66,9 @@ extension Future where Value == UIImage {
     
     func animate<T: Animatable>(view: T) -> Future<Value> {
         chained { [unowned self] value in
+            let optimizedImage = UIImage.makeOptimizedImage(from: value)
             DispatchQueue.main.async {
-                view.performSnapshot(value)
+                view.performSnapshot(optimizedImage)
             }
             return self
         }
