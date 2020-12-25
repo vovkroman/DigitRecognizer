@@ -36,9 +36,10 @@ class CanvasViewController: UIViewController {
 extension CanvasViewController: DrawingDelegate {
     func drawingDidStart(on view: DrawingView) {}
     func drawingDidFinish(on view: DrawingView) {
+        let size = interpreter.imageView.frame.size
         do {
             try canvas.makeSnapshot()
-                .animate(view: self)
+                .animate(view: self, into: size)
                 .convertOf(viewModel)
                 .apply(to: interpreter)
         } catch {
@@ -52,21 +53,21 @@ extension CanvasViewController: Animatable {
     var to: UIImageView { return interpreter.imageView }
     
     func performSnapshot(_ image: UIImage) {
-        guard let snapshot = from.snapshotView(afterScreenUpdates: false) else {
-            return
-        }
-        from.addSubview(snapshot)
+        let snapshot = from.makeSnapshotView()
+        view.addSubview(snapshot)
         let toPoint = to.convert(to.center, to: view)
         let toFrame = to.convert(to.frame, to: view)
         UIView.animateKeyframes(withDuration: 0.55, delay: 0.0, options: .calculationModeCubic, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.3) {
+                self.to.alpha = 0.0
+            }
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.25) {
                 snapshot.center = toPoint
                 snapshot.frame = toFrame
             }
-            UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 0.2) {
-                self.to.image = image
-            }
         }, completion: { _ in
+            self.to.alpha = 1.0
+            self.to.image = image
             snapshot.removeFromSuperview()
         })
     }

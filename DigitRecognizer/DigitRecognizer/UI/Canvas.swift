@@ -19,7 +19,9 @@ class Canvas: DrawingView {
     }
     
     private func makeSnapshot(of layer: CALayer, bounds: CGRect) -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        let config = UIGraphicsImageRendererFormat()
+        config.opaque = true
+        let renderer = UIGraphicsImageRenderer(bounds: bounds, format: config)
         let image = renderer.image { rendererContext in
             layer.render(in: rendererContext.cgContext)
         }

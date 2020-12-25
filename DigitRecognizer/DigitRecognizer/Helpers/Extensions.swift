@@ -13,8 +13,8 @@ extension Array where Element: Comparable {
 }
 
 extension UIImage {
-    static func makeOptimizedImage(from image: UIImage) -> UIImage {
-        let imageSize: CGSize = image.size
+    static func makeOptimizedImage(from image: UIImage, with size: CGSize) -> UIImage {
+        let imageSize: CGSize = size
         UIGraphicsBeginImageContextWithOptions(imageSize, true, UIScreen.main.scale)
         image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
         let optimizedImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -33,6 +33,19 @@ extension UIImage {
 //            image.draw(in: rect, blendMode: .multiply, alpha: 0.5)
 //        }
 //    }
+}
+
+extension UIView {
+    func makeSnapshotView(afterScreenUpdates: Bool = false) -> UIView {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, true, UIScreen.main.scale)
+        drawHierarchy(in: bounds, afterScreenUpdates: true)
+        // And finally, get image
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        defer { UIGraphicsEndImageContext() }
+        let view = UIView(frame: frame)
+        view.layer.contents = image?.cgImage
+        return view
+    }
 }
 
 protocol Transparentable {
@@ -64,9 +77,9 @@ extension Future where Value == UIImage {
         }
     }
     
-    func animate<T: Animatable>(view: T) -> Future<Value> {
+    func animate<T: Animatable>(view: T, into size: CGSize) -> Future<Value> {
         chained { [unowned self] value in
-            let optimizedImage = UIImage.makeOptimizedImage(from: value)
+            let optimizedImage = UIImage.makeOptimizedImage(from: value, with: size)
             DispatchQueue.main.async {
                 view.performSnapshot(optimizedImage)
             }
