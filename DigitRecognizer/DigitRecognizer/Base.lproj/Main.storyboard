@@ -59,7 +59,7 @@
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="4Cl-O3-08U" secondAttribute="bottom" id="60W-YV-Ypa"/>
                                             <constraint firstAttribute="trailing" secondItem="4Cl-O3-08U" secondAttribute="trailing" id="NbQ-kr-Orn"/>
