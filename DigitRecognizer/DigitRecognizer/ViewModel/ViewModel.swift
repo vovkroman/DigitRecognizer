@@ -26,7 +26,7 @@ extension Recognizer {
             let guess = outputs[digit]
             var result: Result.Message = .default
             if guess > threshold {
-                result = .sure(prob: outputs[digit], digit: digit)
+                result = .sure(prob: guess, digit: digit)
             } else {
                 result = .notSure(prob: guess)
             }

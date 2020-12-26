@@ -130,7 +130,7 @@ extension UIImage {
         
         let rect = CGRect(origin: CGPoint(x: -mass.minX * scale, y: -mass.minY * scale), size: scaledSize)
         
-        UIGraphicsBeginImageContextWithOptions(target, false, 1)
+        UIGraphicsBeginImageContextWithOptions(target, true, 1)
         defer {
             UIGraphicsEndImageContext()
         }

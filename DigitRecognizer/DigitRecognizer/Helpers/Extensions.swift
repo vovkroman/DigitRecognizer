@@ -37,14 +37,16 @@ extension UIImage {
 
 extension UIView {
     func makeSnapshotView(afterScreenUpdates: Bool = false) -> UIView {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, true, UIScreen.main.scale)
-        drawHierarchy(in: bounds, afterScreenUpdates: true)
-        // And finally, get image
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        defer { UIGraphicsEndImageContext() }
+        let config = UIGraphicsImageRendererFormat()
+        config.opaque = true
         let view = UIView(frame: frame)
+        let render = UIGraphicsImageRenderer(bounds: bounds, format: config)
+        // And finally, get image
+        let image = render.image { ctx in
+            layer.render(in: ctx.cgContext)
+        }
         view.layer.contentsScale = UIScreen.main.scale
-        view.layer.contents = image?.cgImage
+        view.layer.contents = image.cgImage
         return view
     }
 }
