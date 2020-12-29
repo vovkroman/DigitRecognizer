@@ -37,7 +37,7 @@ extension Recognizer {
 
 extension Recognizer {
     class ViewModel {
-        private let model = Model()
+        private let model: Modelable
 
         func fetch(_ anImage: UIImage) throws -> Future<Node> {
             return try model
@@ -45,6 +45,8 @@ extension Recognizer {
                 .makePresenter()
         }
         
-        init() {}
+        init(model: Modelable = Model()) {
+            self.model = model
+        }
     }
 }
