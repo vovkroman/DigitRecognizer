@@ -59,6 +59,7 @@
 		6F06BE792583C4920047EC9A /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		6F06BE7F2583F0920047EC9A /* Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F06BE802583F0920047EC9A /* MNIST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MNIST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F44BE0825A38D5C0005751B /* FBAnimationPerformanceTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBAnimationPerformanceTracker.h; sourceTree = "<group>"; };
 		6F88EC7C2588C55200C5972C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6F88EC822588F1AA00C5972C /* Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpreter.swift; sourceTree = "<group>"; };
 		6F88EC882589271A00C5972C /* FutureKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FutureKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +179,7 @@
 				6FAB7D87257CEC3A00889031 /* Assets.xcassets */,
 				6FAB7D89257CEC3A00889031 /* LaunchScreen.storyboard */,
 				6FAB7D8C257CEC3A00889031 /* Info.plist */,
+				6F44BE0825A38D5C0005751B /* FBAnimationPerformanceTracker.h */,
 			);
 			path = DigitRecognizer;
 			sourceTree = "<group>";
