@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F23DE0625ADA7E500EA282E /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F23DE0525ADA7E500EA282E /* Operators.swift */; };
 		6F88EC812588C8F600C5972C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88EC802588C8F600C5972C /* Extensions.swift */; };
 		6F9D37672580C4AD00EFD055 /* FutureKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9D375D2580C4AD00EFD055 /* FutureKit.framework */; };
 		6F9D376C2580C4AD00EFD055 /* FutureKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9D376B2580C4AD00EFD055 /* FutureKitTests.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F23DE0525ADA7E500EA282E /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		6F88EC802588C8F600C5972C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6F9D375D2580C4AD00EFD055 /* FutureKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FutureKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F9D37602580C4AD00EFD055 /* FutureKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FutureKit.h; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		6F9D375F2580C4AD00EFD055 /* FutureKit */ = {
 			isa = PBXGroup;
 			children = (
+				6F23DE0525ADA7E500EA282E /* Operators.swift */,
 				6F88EC802588C8F600C5972C /* Extensions.swift */,
 				6F9D378A2580C85400EFD055 /* Promise */,
 				6F9D37892580C84600EFD055 /* Future */,
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F9D377A2580C6B500EFD055 /* Future.swift in Sources */,
+				6F23DE0625ADA7E500EA282E /* Operators.swift in Sources */,
 				6F88EC812588C8F600C5972C /* Extensions.swift in Sources */,
 				6F9D377E2580C6E800EFD055 /* Promise.swift in Sources */,
 			);
