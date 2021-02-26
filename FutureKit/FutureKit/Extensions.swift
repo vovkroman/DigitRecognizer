@@ -34,11 +34,13 @@ extension Future {
         
         return promise
     }
-    
+}
+
+extension Future {
+    /// Returns a future with the result of mapping the given closure over the
+     /// current future's value.
     @inlinable
-    public func transformed<T>(
-        with closure: @escaping (Value) throws -> T
-    ) -> Future<T> {
+    public func transformed<T>(with closure: @escaping (Value) throws -> T) -> Future<T> {
          chained { value in
              try Promise(value: closure(value))
         }
