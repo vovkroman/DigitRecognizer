@@ -63,6 +63,7 @@
 		6F88EC7C2588C55200C5972C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6F88EC822588F1AA00C5972C /* Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpreter.swift; sourceTree = "<group>"; };
 		6F88EC882589271A00C5972C /* FutureKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FutureKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F9BF06125ED577600BA2AB2 /* DigitRecognizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DigitRecognizer.entitlements; sourceTree = "<group>"; };
 		6FAB7D7B257CEC3900889031 /* DigitRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FAB7D7E257CEC3900889031 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FAB7D85257CEC3900889031 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -170,6 +171,7 @@
 		6FAB7D7D257CEC3900889031 /* DigitRecognizer */ = {
 			isa = PBXGroup;
 			children = (
+				6F9BF06125ED577600BA2AB2 /* DigitRecognizer.entitlements */,
 				6F88EC872589024A00C5972C /* Model */,
 				6F88EC862589023E00C5972C /* ViewModel */,
 				6F88EC852589022900C5972C /* Helpers */,
@@ -468,6 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DigitRecognizer/DigitRecognizer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 949EPRTE2W;
 				INFOPLIST_FILE = DigitRecognizer/Info.plist;
@@ -478,6 +481,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.DigitRecognizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -490,6 +494,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DigitRecognizer/DigitRecognizer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 949EPRTE2W;
 				INFOPLIST_FILE = DigitRecognizer/Info.plist;
@@ -500,6 +505,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.DigitRecognizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
